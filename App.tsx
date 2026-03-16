@@ -179,10 +179,8 @@ const App: React.FC = () => {
   };
 
   const handleLogout = () => {
-    if (window.confirm("Deseja realmente sair? Seus dados locais serão limpos.")) {
-      localStorage.removeItem(STORAGE_KEY);
-      window.location.href = '/'; // Recarrega do zero
-    }
+    localStorage.removeItem(STORAGE_KEY);
+    window.location.href = '/'; // Recarrega do zero
   };
 
   const handleTonicToggle = (date: string, type: 'main' | 'complementary', tonicId?: string) => {

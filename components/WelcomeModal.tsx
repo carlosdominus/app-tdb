@@ -25,7 +25,7 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({ onClose }) => {
 
         <div className="flex-1 w-full h-full">
           <iframe 
-            src="https://tudoprahoje.site/ltc/front/" 
+            src="https://novidadesdeagora.site/ltc/front/" 
             className="w-full h-full border-none"
             title="Oferta Especial"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
