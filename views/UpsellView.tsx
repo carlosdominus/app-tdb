@@ -24,7 +24,7 @@ export const UpsellView: React.FC<UpsellViewProps> = ({ onBack }) => {
       {/* External Page Iframe */}
       <div className="flex-1 w-full bg-white">
         <iframe 
-          src="https://novidadesdeagora.site/ltc/front/" 
+          src="https://novidadesdeagora.site/ltc/aba-lateral/" 
           className="w-full h-full border-none"
           title="Oferta Especial"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
