@@ -30,7 +30,7 @@ export const OnboardingView: React.FC<OnboardingViewProps> = ({ onComplete }) =>
   const handleGenerate = () => {
     setStep(2);
     setTimeout(() => {
-      setStep(3);
+      onComplete(profile);
     }, 2800);
   };
 

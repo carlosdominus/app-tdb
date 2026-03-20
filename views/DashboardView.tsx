@@ -26,18 +26,18 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ state, onNavigate,
   return (
     <div className="space-y-10 pb-12">
       {/* Hero Card */}
-      <GlassCard className="glass-dark text-white border-none overflow-hidden relative shadow-2xl p-10 rounded-[40px]">
+      <GlassCard className="glass-dark text-white border-none overflow-hidden relative shadow-2xl p-6 sm:p-10 rounded-[32px] sm:rounded-[40px]">
         <div className="relative z-10">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-8 mb-10">
-            <div className="flex items-center gap-6">
-              <div className="w-20 h-20 gradient-primary rounded-2xl flex items-center justify-center shadow-[0_0_30px_rgba(230,57,70,0.5)]">
-                <Crown size={40} />
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 sm:gap-8 mb-8 sm:mb-10">
+            <div className="flex items-center gap-4 sm:gap-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 gradient-primary rounded-2xl flex items-center justify-center shadow-[0_0_30px_rgba(230,57,70,0.5)] shrink-0">
+                <Crown size={32} className="sm:w-10 sm:h-10" />
               </div>
               <div>
-                <h2 className="text-3xl font-black tracking-tight uppercase">Bem-vindo, {state.user?.name.split(' ')[0]}</h2>
-                <div className="flex items-center gap-3 mt-2">
-                   <span className="bg-[#E63946] text-white text-[10px] font-black px-3 py-1 rounded shadow-lg uppercase tracking-widest">Membro Elite</span>
-                   <p className="text-gray-400 text-xs font-bold tracking-widest uppercase">Protocolo 21 Dias</p>
+                <h2 className="text-xl sm:text-3xl font-black tracking-tight uppercase leading-tight">Bem-vindo, {state.user?.name.split(' ')[0]}</h2>
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-2">
+                   <span className="bg-[#E63946] text-white text-[8px] sm:text-[10px] font-black px-2 sm:px-3 py-1 rounded shadow-lg uppercase tracking-widest">Membro Elite</span>
+                   <p className="text-gray-400 text-[10px] sm:text-xs font-bold tracking-widest uppercase">Protocolo 21 Dias</p>
                 </div>
               </div>
             </div>
@@ -63,27 +63,27 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ state, onNavigate,
       {/* Main Tonic Card */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
         <div className="md:col-span-8">
-          <GlassCard className="relative overflow-hidden border-none shadow-sm p-10 bg-white rounded-[40px]" onClick={() => onTonicNavigate(mainTonicId)}>
-            <div className="flex justify-between items-start mb-10">
-               <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 bg-gray-50 text-black rounded-2xl flex items-center justify-center">
-                    <MainIcon size={32} />
+          <GlassCard className="relative overflow-hidden border-none shadow-sm p-6 sm:p-10 bg-white rounded-[32px] sm:rounded-[40px]" onClick={() => onTonicNavigate(mainTonicId)}>
+            <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8 sm:mb-10">
+               <div className="flex items-center gap-4 sm:gap-6">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-50 text-black rounded-2xl flex items-center justify-center shrink-0">
+                    <MainIcon size={24} className="sm:w-8 sm:h-8" />
                   </div>
                   <div className="flex flex-col">
-                    <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-1">FOCO PERSONALIZADO</h3>
-                    <h2 className="text-2xl font-black text-black uppercase tracking-tighter">{mainTonic.name}</h2>
+                    <h3 className="text-[8px] sm:text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-1">FOCO PERSONALIZADO</h3>
+                    <h2 className="text-xl sm:text-2xl font-black text-black uppercase tracking-tighter leading-tight">{mainTonic.name}</h2>
                   </div>
                </div>
                <div className="badge-personalized">HOJE</div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
-               <div className="p-8 rounded-3xl bg-gray-50 border border-gray-100 flex flex-col justify-between">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-10">
+               <div className="p-6 sm:p-8 rounded-3xl bg-gray-50 border border-gray-100 flex flex-col justify-between">
                   <div>
                     <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">MOMENTO IDEAL</p>
                     <div className="flex items-center gap-4 mb-6">
                        <Clock size={24} className="text-[#E63946]" />
-                       <span className="text-xl font-black text-black">{mainTonic.timing.split(' ')[0]}</span>
+                       <span className="text-lg sm:text-xl font-black text-black">{mainTonic.timing.split(' ')[0]}</span>
                     </div>
                   </div>
                   <div className={`flex items-center gap-3 text-[11px] font-black tracking-[0.2em] ${todayCheck.mainTonic ? 'text-[#2ECC71]' : 'text-[#E63946]'}`}>
@@ -92,12 +92,12 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ state, onNavigate,
                   </div>
                </div>
                <div className="flex flex-col gap-4">
-                  <Button variant="primary" fullWidth className="h-16" onClick={(e) => {
+                  <Button variant="primary" fullWidth className="h-14 sm:h-16" onClick={(e) => {
                     e.stopPropagation();
                     onTonicNavigate(mainTonicId);
                   }}>VER RECEITA</Button>
                   {!todayCheck.mainTonic && (
-                    <Button variant="secondary" fullWidth className="h-16" onClick={(e) => {
+                    <Button variant="secondary" fullWidth className="h-14 sm:h-16" onClick={(e) => {
                       e.stopPropagation();
                       onTonicToggle(today, 'main');
                     }}>SINALIZAR AGORA</Button>
@@ -143,27 +143,27 @@ export const DashboardView: React.FC<DashboardViewProps> = ({ state, onNavigate,
       </div>
 
       {/* Quick Nav Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          <GlassCard onClick={() => onNavigate(View.BONUSES)} className="flex items-center gap-8 p-10 border-none shadow-sm bg-black text-white hover:scale-[1.01] transition-all rounded-[40px]">
-             <div className="w-16 h-16 gradient-primary rounded-2xl flex items-center justify-center text-white shadow-2xl">
-                <Crown size={36} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+          <GlassCard onClick={() => onNavigate(View.BONUSES)} className="flex items-center gap-4 sm:gap-8 p-6 sm:p-10 border-none shadow-sm bg-black text-white hover:scale-[1.01] transition-all rounded-[32px] sm:rounded-[40px]">
+             <div className="w-12 h-12 sm:w-16 sm:h-16 gradient-primary rounded-2xl flex items-center justify-center text-white shadow-2xl shrink-0">
+                <Crown size={28} className="sm:w-9 sm:h-9" />
              </div>
-             <div>
-                <h3 className="text-2xl font-black uppercase tracking-tighter">Área VIP</h3>
-                <p className="text-sm text-gray-400 font-medium">Conteúdo de domínio e bônus.</p>
+             <div className="flex-1">
+                <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tighter">Área VIP</h3>
+                <p className="text-xs sm:text-sm text-gray-400 font-medium">Conteúdo de domínio.</p>
              </div>
-             <ChevronRight size={28} className="ml-auto text-gray-600" />
+             <ChevronRight size={24} className="ml-auto text-gray-600 shrink-0" />
           </GlassCard>
 
-          <GlassCard onClick={() => onNavigate(View.TRACKER)} className="flex items-center gap-8 p-10 border-none shadow-sm bg-white hover:scale-[1.01] transition-all rounded-[40px]">
-             <div className="w-16 h-16 bg-gray-50 text-black rounded-2xl flex items-center justify-center shadow-sm">
-                <Zap size={36} className="text-[#E63946]" />
+          <GlassCard onClick={() => onNavigate(View.TRACKER)} className="flex items-center gap-4 sm:gap-8 p-6 sm:p-10 border-none shadow-sm bg-white hover:scale-[1.01] transition-all rounded-[32px] sm:rounded-[40px]">
+             <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-50 text-black rounded-2xl flex items-center justify-center shadow-sm shrink-0">
+                <Zap size={28} className="text-[#E63946] sm:w-9 sm:h-9" />
              </div>
-             <div>
-                <h3 className="text-2xl font-black uppercase tracking-tighter">Modo Turbo</h3>
-                <p className="text-sm text-gray-400 font-medium">Aceleração e Guia 125 posições.</p>
+             <div className="flex-1">
+                <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tighter">Modo Turbo</h3>
+                <p className="text-xs sm:text-sm text-gray-400 font-medium">Aceleração.</p>
              </div>
-             <ChevronRight size={28} className="ml-auto text-gray-300" />
+             <ChevronRight size={24} className="ml-auto text-gray-300 shrink-0" />
           </GlassCard>
       </div>
 

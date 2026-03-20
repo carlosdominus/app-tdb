@@ -18,6 +18,7 @@ import { ScienceView } from './views/ScienceView.tsx';
 import { ExclusivePackageView } from './views/ExclusivePackageView.tsx';
 import { ExclusivePackage2View } from './views/ExclusivePackage2View.tsx';
 import { UpsellView } from './views/UpsellView.tsx';
+import { PdfView } from './views/PdfView.tsx';
 import { WelcomeModal } from './components/WelcomeModal.tsx';
 import { Logo } from './components/Logo.tsx';
 import { Sidebar } from './components/Sidebar.tsx';
@@ -42,7 +43,10 @@ const VIEW_TO_HASH: Record<View, string> = {
   [View.EXCLUSIVE_PACKAGE_2]: 'guia-posicoes',
   [View.LOGIN]: 'login',
   [View.ONBOARDING]: 'onboarding',
-  [View.UPSELL]: 'oferta-especial'
+  [View.UPSELL]: 'oferta-especial',
+  [View.ANTI_PRECOCE]: 'protocolo-anti-precoce',
+  [View.GUIA_COMEDOR]: 'guia-do-comedor',
+  [View.TRUQUE_CUPIDO]: 'truque-do-cupido'
 };
 
 const HASH_TO_VIEW: Record<string, View> = Object.entries(VIEW_TO_HASH).reduce(
@@ -216,7 +220,7 @@ const App: React.FC = () => {
       case View.BONUSES: return <BonusesView onBack={() => navigateTo(View.TRACKER)} />;
       case View.WARRANTY: return <WarrantyView onBack={() => navigateTo(View.DASHBOARD)} firstAccessDate={state.user?.createdAt || ''} />;
       case View.HELP: return <HelpView onBack={() => navigateTo(View.DASHBOARD)} />;
-      case View.SCIENCE: return <ScienceView onBack={() => navigateTo(View.DASHBOARD)} />;
+      case View.SCIENCE: return <CatalogView onBack={() => navigateTo(View.DASHBOARD)} onTonicNavigate={(id) => navigateTo(View.TONIC_DETAIL, id)} onNavigate={navigateTo} mainProblem={state.user?.profile?.mainProblem as ProblemType || 'broxada'} />;
       case View.PROFILE: return <ProfileView state={state} onBack={() => navigateTo(View.DASHBOARD)} onLogout={handleLogout} onNavigate={navigateTo} />;
       case View.TONIC_DETAIL: {
         const tonic = TONICS[activeTonicId || ''] || TONICS['anti-broxada'];
@@ -228,6 +232,9 @@ const App: React.FC = () => {
       case View.EXCLUSIVE_PACKAGE: return <ExclusivePackageView onBack={() => navigateTo(View.TRACKER)} />;
       case View.EXCLUSIVE_PACKAGE_2: return <ExclusivePackage2View onBack={() => navigateTo(View.TRACKER)} />;
       case View.UPSELL: return <UpsellView onBack={() => navigateTo(View.DASHBOARD)} />;
+      case View.ANTI_PRECOCE: return <PdfView title="Protocolo Anti-Precoce" pdfUrl="https://drive.google.com/file/d/1iAPmURqXumSPOeaZsBHIx4WKGspIqHNK/preview" onBack={() => navigateTo(View.DASHBOARD)} />;
+      case View.GUIA_COMEDOR: return <PdfView title="Guia do Comedor" pdfUrl="https://drive.google.com/file/d/1IGVoCnFr3StTs_cL7j9xOiLCqqgQxDzp/preview" onBack={() => navigateTo(View.DASHBOARD)} />;
+      case View.TRUQUE_CUPIDO: return <PdfView title="Truque do Cupido" pdfUrl="https://drive.google.com/file/d/1ibqwEF2Kx9iYBHS-UG19UaF3tFIXvM7f/preview" onBack={() => navigateTo(View.DASHBOARD)} />;
       default: return <DashboardView state={state} onNavigate={navigateTo} onTonicNavigate={(id) => navigateTo(View.TONIC_DETAIL, id)} onTonicToggle={handleTonicToggle} />;
     }
   };
@@ -238,7 +245,7 @@ const App: React.FC = () => {
   if (isAuthPage) return renderView();
 
   return (
-    <div className="min-h-screen pb-24 md:pb-0 bg-[#F8F9FA]">
+    <div className="min-h-screen pb-24 md:pb-0 bg-[#F8F9FA] overflow-x-hidden">
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} onNavigate={navigateTo} onLogout={handleLogout} currentView={currentView} />
       
       {state.isLoggedIn && state.user?.onboardingCompleted && !state.hasSeenWelcomeVideo && (

@@ -68,18 +68,20 @@ export const TrackerView: React.FC<TrackerViewProps> = ({ state, onBack, onNavig
         </GlassCard>
 
         {/* 20 Pensamentos Eróticos */}
-        <GlassCard className="p-8 border-none bg-white shadow-sm space-y-6 group cursor-pointer md:col-span-2" onClick={() => onNavigate(View.BONUSES)}>
-          <div className="flex items-center gap-6">
-            <div className="w-12 h-12 bg-pink-50 text-pink-500 rounded-xl flex items-center justify-center">
-              <Heart size={24} />
+        <GlassCard className="p-6 sm:p-8 border-none bg-white shadow-sm space-y-6 group cursor-pointer md:col-span-2" onClick={() => onNavigate(View.BONUSES)}>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+            <div className="flex items-center gap-4 flex-1">
+              <div className="w-12 h-12 bg-pink-50 text-pink-500 rounded-xl flex items-center justify-center shrink-0">
+                <Heart size={24} />
+              </div>
+              <div>
+                <h3 className="text-xl sm:text-2xl font-black text-black uppercase tracking-tight">20 Pensamentos Eróticos</h3>
+                <p className="text-xs sm:text-sm text-gray-400 font-medium leading-relaxed">
+                  Descubra o que realmente se passa na mente das mulheres durante o ato.
+                </p>
+              </div>
             </div>
-            <div className="flex-1">
-              <h3 className="text-2xl font-black text-black uppercase tracking-tight">20 Pensamentos Eróticos</h3>
-              <p className="text-sm text-gray-400 font-medium leading-relaxed">
-                Descubra o que realmente se passa na mente das mulheres durante o ato.
-              </p>
-            </div>
-            <div className="flex items-center gap-2 text-pink-500 font-black text-[10px] uppercase tracking-widest group-hover:translate-x-2 transition-transform">
+            <div className="flex items-center gap-2 text-pink-500 font-black text-[10px] uppercase tracking-widest group-hover:translate-x-2 transition-transform sm:ml-auto">
               Entrar na Mente Dela <ArrowRight size={14} />
             </div>
           </div>

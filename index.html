@@ -14,12 +14,18 @@
         --bg-light: #F8F9FA;
         --text-main: #121212;
       }
+      html, body {
+        overflow-x: hidden;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        -webkit-overflow-scrolling: touch;
+      }
       body {
         font-family: 'Inter', sans-serif;
         background-color: var(--bg-light);
         color: var(--text-main);
         -webkit-font-smoothing: antialiased;
-        overscroll-behavior-y: none;
       }
       h1, h2, h3, .font-poppins {
         font-family: 'Poppins', sans-serif;
