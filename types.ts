@@ -1,4 +1,14 @@
 
+import React from 'react';
+
+declare module 'react' {
+  namespace JSX {
+    interface IntrinsicElements {
+      'vturb-smartplayer': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & { id?: string };
+    }
+  }
+}
+
 export type ProblemType = 'broxada' | 'gozo-rapido' | 'pau-meia-bomba' | 'sem-tesao';
 
 export interface UserProfile {

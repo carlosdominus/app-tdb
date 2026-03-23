@@ -214,7 +214,7 @@ const App: React.FC = () => {
       case View.ONBOARDING: return <OnboardingView onComplete={handleOnboardingComplete} />;
       case View.DASHBOARD: return <DashboardView state={state} onNavigate={navigateTo} onTonicNavigate={(id) => navigateTo(View.TONIC_DETAIL, id)} onTonicToggle={handleTonicToggle} />;
       case View.CATALOG: return <CatalogView onBack={() => navigateTo(View.DASHBOARD)} onTonicNavigate={(id) => navigateTo(View.TONIC_DETAIL, id)} onNavigate={navigateTo} mainProblem={state.user?.profile?.mainProblem as ProblemType || 'broxada'} />;
-      case View.PREMIUM: return <PremiumView onBack={() => navigateTo(View.DASHBOARD)} />;
+      case View.PREMIUM: return <PremiumView state={state} onBack={() => navigateTo(View.DASHBOARD)} />;
       case View.TRACKER: return <TrackerView state={state} onBack={() => navigateTo(View.DASHBOARD)} onNavigate={navigateTo} toggleCheck={handleTonicToggle} />;
       case View.CHECKLIST: return <ChecklistView state={state} onBack={() => navigateTo(View.DASHBOARD)} onTonicToggle={handleTonicToggle} />;
       case View.BONUSES: return <BonusesView onBack={() => navigateTo(View.TRACKER)} />;

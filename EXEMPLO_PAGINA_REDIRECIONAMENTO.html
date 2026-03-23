@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionando para o Suporte Elite...</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            items-center: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #E63946;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        h1 { font-size: 18px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; }
+        p { color: #86868B; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
+    </style>
+</head>
+<body>
+    <div class="loader"></div>
+    <h1>Você está sendo levado para a Doutora...</h1>
+    <p>Conectando ao atendimento prioritário.</p>
+
+    <script>
+        // CONFIGURAÇÃO DO SEU WHATSAPP
+        const WHATSAPP_NUMBER = "5548998043334"; 
+
+        // Função para pegar parâmetros da URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Execução imediata para ser o mais rápido possível
+        (function() {
+            const message = getQueryParam('msg');
+            const whatsappUrl = message 
+                ? `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${message}`
+                : `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}`;
+            
+            // Redirecionamento instantâneo
+            window.location.replace(whatsappUrl);
+        })();
+    </script>
+</body>
+</html>
