@@ -18,6 +18,7 @@ interface QuizAnswer {
   morning_erection: string;
   frequency: string;
   lifestyle: string;
+  description: string;
 }
 
 export const PremiumView: React.FC<{ state: AppState; onBack: () => void }> = ({ state, onBack }) => {
@@ -29,7 +30,8 @@ export const PremiumView: React.FC<{ state: AppState; onBack: () => void }> = ({
     sexual_frequency: '',
     morning_erection: '',
     frequency: '',
-    lifestyle: ''
+    lifestyle: '',
+    description: ''
   });
 
   useEffect(() => {
@@ -114,7 +116,8 @@ const DiagnosisQuiz: React.FC<{ onComplete: (answers: QuizAnswer) => void; onBac
     sexual_frequency: '',
     morning_erection: '',
     frequency: '',
-    lifestyle: ''
+    lifestyle: '',
+    description: ''
   });
 
   const questions = [
@@ -152,6 +155,11 @@ const DiagnosisQuiz: React.FC<{ onComplete: (answers: QuizAnswer) => void; onBac
       id: 'lifestyle',
       label: 'Como você classificaria seu nível de estresse e qualidade de sono?',
       options: ['Péssimo', 'Regular', 'Bom', 'Excelente']
+    },
+    {
+      id: 'description',
+      label: 'Descreva seu problema',
+      type: 'text'
     }
   ];
 
@@ -164,6 +172,10 @@ const DiagnosisQuiz: React.FC<{ onComplete: (answers: QuizAnswer) => void; onBac
     } else {
       onComplete(updatedAnswers);
     }
+  };
+
+  const handleTextSubmit = () => {
+    onComplete(answers);
   };
 
   const progress = ((currentQuestion + 1) / questions.length) * 100;
@@ -186,20 +198,41 @@ const DiagnosisQuiz: React.FC<{ onComplete: (answers: QuizAnswer) => void; onBac
         <h2 className="text-2xl font-black text-black uppercase tracking-tighter leading-tight">
           {questions[currentQuestion].label}
         </h2>
-        <p className="text-gray-400 text-[10px] font-black uppercase tracking-widest">Selecione a opção que melhor te descreve</p>
+        <p className="text-gray-400 text-[10px] font-black uppercase tracking-widest">
+          {questions[currentQuestion].type === 'text' ? 'Conte-nos um pouco mais sobre o que você está sentindo' : 'Selecione a opção que melhor te descreve'}
+        </p>
       </div>
 
       <div className="grid grid-cols-1 gap-4">
-        {questions[currentQuestion].options.map((option) => (
-          <button
-            key={option}
-            onClick={() => handleOptionSelect(option)}
-            className="w-full p-6 bg-white border-2 border-gray-100 rounded-3xl text-left font-bold text-sm uppercase tracking-tight hover:border-[#E63946] hover:bg-red-50 transition-all flex items-center justify-between group"
-          >
-            {option}
-            <ChevronRight size={18} className="text-gray-300 group-hover:text-[#E63946] transition-all" />
-          </button>
-        ))}
+        {questions[currentQuestion].type === 'text' ? (
+          <div className="space-y-6">
+            <textarea
+              value={answers.description}
+              onChange={(e) => setAnswers({ ...answers, description: e.target.value })}
+              placeholder="Escreva aqui..."
+              className="w-full p-6 bg-white border-2 border-gray-100 rounded-3xl font-bold text-sm min-h-[150px] focus:border-[#E63946] focus:ring-0 transition-all outline-none resize-none"
+            />
+            <Button 
+              onClick={handleTextSubmit}
+              disabled={!answers.description.trim()}
+              className="w-full py-6 text-lg font-black uppercase tracking-tighter flex items-center justify-center gap-3 group"
+            >
+              Finalizar Consulta
+              <CheckCircle2 size={20} className="group-hover:scale-110 transition-transform" />
+            </Button>
+          </div>
+        ) : (
+          questions[currentQuestion].options?.map((option) => (
+            <button
+              key={option}
+              onClick={() => handleOptionSelect(option)}
+              className="w-full p-6 bg-white border-2 border-gray-100 rounded-3xl text-left font-bold text-sm uppercase tracking-tight hover:border-[#E63946] hover:bg-red-50 transition-all flex items-center justify-between group"
+            >
+              {option}
+              <ChevronRight size={18} className="text-gray-300 group-hover:text-[#E63946] transition-all" />
+            </button>
+          ))
+        )}
       </div>
     </div>
   );
@@ -208,7 +241,7 @@ const DiagnosisQuiz: React.FC<{ onComplete: (answers: QuizAnswer) => void; onBac
 const RedirectStep: React.FC<{ answers: QuizAnswer; user: any }> = ({ answers, user }) => {
   useEffect(() => {
     // Construct the message
-    const message = `Olá, eu me chamo ${user?.name}, meu email é ${user?.email}. Tenho ${answers.age} e os meus sintomas/problemas são: ${answers.symptoms}. Minha saúde: ${answers.health}. Frequência sexual: ${answers.sexual_frequency}. Ereções matinais: ${answers.morning_erection}. Frequência de falha: ${answers.frequency}. Estilo de vida: ${answers.lifestyle}.`;
+    const message = `Olá, eu me chamo ${user?.name}, meu email é ${user?.email}. Tenho ${answers.age} e os meus sintomas/problemas são: ${answers.symptoms}. Minha saúde: ${answers.health}. Frequência sexual: ${answers.sexual_frequency}. Ereções matinais: ${answers.morning_erection}. Frequência de falha: ${answers.frequency}. Estilo de vida: ${answers.lifestyle}. Descrição do problema: ${answers.description}`;
     
     // Encode the message for URL
     const encodedMessage = encodeURIComponent(message);
