@@ -21,6 +21,14 @@ interface QuizAnswer {
   description: string;
 }
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'vturb-smartplayer': any;
+    }
+  }
+}
+
 export const PremiumView: React.FC<{ state: AppState; onBack: () => void }> = ({ state, onBack }) => {
   const [funnelStep, setFunnelStep] = useState<'vsl' | 'quiz' | 'redirect'>('vsl');
   const [quizAnswers, setQuizAnswers] = useState<QuizAnswer>({
@@ -37,13 +45,13 @@ export const PremiumView: React.FC<{ state: AppState; onBack: () => void }> = ({
   useEffect(() => {
     if (funnelStep === 'vsl') {
       const script = document.createElement('script');
-      script.src = "https://scripts.converteai.net/853c4f04-8442-44da-b89d-0541d78036bb/ab-test/69bdc134423ef7939ca5dc36/player.js";
+      script.src = "https://scripts.converteai.net/853c4f04-8442-44da-b89d-0541d78036bb/players/69c44bc05341b955f71cb84d/v4/player.js";
       script.async = true;
       document.head.appendChild(script);
 
       const handleVideoFinish = (e: any) => {
         // VTurb event for video finished
-        if (e.detail && e.detail.id === 'ab-69bdc134423ef7939ca5dc36') {
+        if (e.detail && e.detail.id === 'vid-69c44bc05341b955f71cb84d') {
           handleStartQuiz();
         } else if (!e.detail) {
           // Fallback if detail is missing but event fired
@@ -74,8 +82,8 @@ export const PremiumView: React.FC<{ state: AppState; onBack: () => void }> = ({
           {/* Vturb Smartplayer */}
           <div id="vsl-container" className="w-full overflow-hidden shadow-2xl shadow-black/20">
             <vturb-smartplayer 
-              id="ab-69bdc134423ef7939ca5dc36" 
-              style={{ display: 'block', margin: '0 auto', width: '100%' }}
+              id="vid-69c44bc05341b955f71cb84d" 
+              style={{ display: 'block', margin: '0 auto', width: '100%', maxWidth: '400px' }}
             ></vturb-smartplayer>
           </div>
         </div>

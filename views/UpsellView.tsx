@@ -8,18 +8,15 @@ interface UpsellViewProps {
 
 export const UpsellView: React.FC<UpsellViewProps> = ({ onBack }) => {
   return (
-    <div className="fixed inset-0 z-40 bg-[#F8F9FA] flex flex-col">
-      {/* Header with Back Button */}
-      <div className="bg-white border-b border-gray-100 px-6 py-4 flex items-center gap-4 z-50">
-        <button 
-          onClick={onBack}
-          className="p-2 -ml-2 text-[#86868B] hover:text-black transition-colors rounded-xl hover:bg-gray-50"
-          title="Voltar ao Painel"
-        >
-          <ArrowLeft size={24} />
-        </button>
-        <span className="font-black uppercase tracking-widest text-[10px] text-black">Acelere seus Resultados</span>
-      </div>
+    <div className="fixed inset-0 z-40 bg-white flex flex-col">
+      {/* Floating Back Button */}
+      <button 
+        onClick={onBack}
+        className="fixed top-6 left-6 z-[110] w-12 h-12 bg-black/10 hover:bg-black/20 backdrop-blur-md text-black transition-all rounded-full flex items-center justify-center shadow-lg group"
+        title="Voltar ao Painel"
+      >
+        <ArrowLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
+      </button>
 
       {/* External Page Iframe */}
       <div className="flex-1 w-full bg-white">

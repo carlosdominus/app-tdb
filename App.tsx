@@ -86,12 +86,48 @@ const App: React.FC = () => {
 
   // Efeito de persistência imediata
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    // Replacer function to handle circular structures and DOM elements
+    const replacer = (key: string, value: any) => {
+      if (value instanceof HTMLElement || (value && value.constructor && value.constructor.name === 'HTMLElement')) {
+        return undefined;
+      }
+      return value;
+    };
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state, replacer));
+    } catch (e) {
+      console.error("Erro ao salvar no localStorage", e);
+    }
   }, [state]);
 
   useLayoutEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [currentView, activeTonicId]);
+
+  // Controle do Chatwoot (Suporte)
+  useEffect(() => {
+    const toggleChatwoot = (show: boolean) => {
+      // 1. Via DOM (Mais garantido para o balão)
+      const selectors = ['.woot-widget-bubble', '.woot--bubble-holder', '#chatwoot_widget--iframe'];
+      selectors.forEach(selector => {
+        const el = document.querySelector(selector);
+        if (el) (el as HTMLElement).style.setProperty('display', show ? 'flex' : 'none', 'important');
+      });
+      
+      // 2. Via SDK (Se disponível e com as funções corretas)
+      const sdk = (window as any).$chatwoot;
+      if (sdk) {
+        if (typeof sdk.setWidgetVisibility === 'function') {
+          sdk.setWidgetVisibility(show ? 'show' : 'hide');
+        } else if (typeof sdk.toggle === 'function' && !show) {
+          sdk.toggle('close');
+        }
+      }
+    };
+
+    const shouldHide = !state.hasSeenWelcomeVideo || currentView === View.UPSELL;
+    toggleChatwoot(!shouldHide);
+  }, [currentView, state.hasSeenWelcomeVideo]);
 
   const navigateTo = (view: View, id?: string) => {
     let hash = VIEW_TO_HASH[view];

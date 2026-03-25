@@ -11,22 +11,14 @@ interface WelcomeModalProps {
 export const WelcomeModal: React.FC<WelcomeModalProps> = ({ onClose }) => {
   return (
     <div className="fixed inset-0 z-[100] bg-white flex flex-col animate-in fade-in duration-500">
-      {/* Header with Close Button */}
-      <div className="bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between z-50">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center text-white">
-            <Logo size={20} />
-          </div>
-          <span className="font-black uppercase tracking-widest text-[10px] text-black">Apresentação Elite</span>
-        </div>
-        <button 
-          onClick={onClose}
-          className="p-2 -mr-2 text-[#86868B] hover:text-black transition-colors rounded-xl hover:bg-gray-50"
-          title="Fechar e ir para o Painel"
-        >
-          <X size={24} />
-        </button>
-      </div>
+      {/* Floating Close Button */}
+      <button 
+        onClick={onClose}
+        className="fixed top-6 right-6 z-[110] w-12 h-12 bg-black/10 hover:bg-black/20 backdrop-blur-md text-black transition-all rounded-full flex items-center justify-center shadow-lg group"
+        title="Fechar e ir para o Painel"
+      >
+        <X size={24} className="group-hover:scale-110 transition-transform" />
+      </button>
 
       {/* Full Screen Iframe */}
       <div className="flex-1 w-full bg-white">
