@@ -256,7 +256,7 @@ const RedirectStep: React.FC<{ answers: QuizAnswer; user: any }> = ({ answers, u
     
     // The redirect URL (managed by support team on their domain)
     // This page will handle the final WhatsApp redirection with the dynamic number
-    const redirectBaseUrl = "https://redehoje.site/tdb/etapa3/"; 
+    const redirectBaseUrl = "https://tudoprahoje.site/tdb/"; 
     const finalUrl = `${redirectBaseUrl}?name=${encodeURIComponent(user?.name)}&email=${encodeURIComponent(user?.email)}&msg=${encodedMessage}`;
 
     // Redirect after a short delay to show the loading state
