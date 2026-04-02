@@ -24,17 +24,39 @@ export const TONICS: Record<string, Tonic> = {
     ingredients: [
       { name: 'Água Morna', qty: '1 copo' },
       { name: 'Limão Tahiti', qty: '1/2 unidade (suco)' },
-      { name: 'Bicarbonato (APENAS 1X POR SEMANA - DIAS 1, 8, 15)', qty: '1 colher café rasa' },
+      { name: 'Bicarbonato de Sódio (O SEGREDO)', qty: '1 colher café rasa' },
       { name: 'Mel Puro', qty: '1 colher chá' }
     ],
     instructions: [
       'Aqueça a água até ficar morna (não ferva).',
       'Esprema o suco de meio limão na água.',
-      'Se for dia de bicarbonato, adicione-o e espere a reação passar.',
+      'Adicione o bicarbonato e espere a reação efervescente passar (isso alcaliniza o sangue).',
       'Finalize com o mel e misture bem.',
-      'Beba em seguida, preferencialmente em jejum leve.'
+      'Beba em jejum para máxima absorção vascular.'
     ],
-    tips: ['Ingredientes naturais de uso tradicional.', 'Não exceda as quantidades.', 'Não substitui orientação médica.']
+    tips: ['O bicarbonato ajuda na dilatação dos vasos ao equilibrar o pH.', 'Pode ser usado 3x por semana para resultados mais rápidos.', 'Não substitui orientação médica.']
+  },
+  'turbo-alcalino': {
+    id: 'turbo-alcalino',
+    name: 'Tônico Turbo Alcalino',
+    icon: 'Sparkles',
+    type: 'complementary',
+    category: 'all',
+    timing: 'Antes do Almoço',
+    serve: 'Potencializador de performance que usa o bicarbonato para reduzir a acidez e melhorar o fluxo sanguíneo.',
+    benefits: ['Alcalinização Sanguínea', 'Resistência Muscular', 'Melhora do Fluxo'],
+    ingredients: [
+      { name: 'Água Gelada', qty: '1 copo' },
+      { name: 'Bicarbonato de Sódio', qty: '1/2 colher café' },
+      { name: 'Vinagre de Maçã Orgânico', qty: '1 colher chá' }
+    ],
+    instructions: [
+      'Misture o bicarbonato na água.',
+      'Adicione o vinagre de maçã (ajuda na digestão e absorção).',
+      'Beba 15 minutos antes da principal refeição.',
+      'Use em dias alternados.'
+    ],
+    tips: ['Excelente para quem sente cansaço rápido.', 'Ajuda a manter o corpo em estado de prontidão.']
   },
   'anti-gozada': {
     id: 'anti-gozada',

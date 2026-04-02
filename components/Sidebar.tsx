@@ -16,8 +16,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onNavigate, o
   const menuItems = [
     { id: View.UPSELL, label: 'ACELERE SEUS RESULTADOS', icon: <ShoppingCart size={20} />, highlight: true },
     { id: View.DASHBOARD, label: 'Home', icon: <Home size={20} /> },
-    { id: View.SCIENCE, label: 'FORÇA NATURAL', icon: <Beaker size={20} /> },
-    { id: View.PREMIUM, label: 'DIAGNÓSTICO PERSONALIZADO', icon: <Crown size={20} /> },
     { id: View.BONUSES, label: 'BÔNUS ESPECIAL', icon: <Gift size={20} /> },
     { id: View.TRACKER, label: 'TÔNICO DO CAVALO', icon: <Zap size={20} /> },
     { id: View.ANTI_PRECOCE, label: 'PROTOCOLO ANTI-PRECOCE', icon: <BookOpen size={20} /> },
@@ -26,7 +24,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onNavigate, o
   ];
 
   const bottomItems = [
-    { id: View.WARRANTY, label: 'Garantia', icon: <Shield size={20} /> },
     { id: View.PROFILE, label: 'Meu Perfil', icon: <User size={20} /> },
   ];
 
@@ -56,6 +53,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onNavigate, o
 
           {/* Navigation */}
           <nav className="flex-1 overflow-y-auto p-4 space-y-1 mt-2">
+            {/* External Link to Diagnosis (Breaking out of iframe) */}
+            <a
+              href="https://tudoprahoje.site/tdb/"
+              target="_top"
+              className="w-full flex items-center gap-4 px-4 py-3 rounded-xl font-bold uppercase tracking-widest text-[10px] text-left transition-all bg-green-500 text-white hover:bg-green-600 shadow-md mb-2"
+            >
+              <div className="shrink-0"><Crown size={20} /></div>
+              <span className="flex-1 text-left">DIAGNÓSTICO WHATSAPP</span>
+            </a>
+
             {menuItems.map((item) => (
               <button
                 key={item.id}

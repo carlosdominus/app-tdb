@@ -261,7 +261,13 @@ const RedirectStep: React.FC<{ answers: QuizAnswer; user: any }> = ({ answers, u
 
     // Redirect after a short delay to show the loading state
     const timer = setTimeout(() => {
-      window.location.href = finalUrl;
+      try {
+        // Try to break out of iframe if embedded
+        window.top.location.href = finalUrl;
+      } catch (e) {
+        // Fallback if window.top is restricted
+        window.location.href = finalUrl;
+      }
     }, 1200);
 
     return () => clearTimeout(timer);
