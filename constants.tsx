@@ -24,39 +24,17 @@ export const TONICS: Record<string, Tonic> = {
     ingredients: [
       { name: 'Água Morna', qty: '1 copo' },
       { name: 'Limão Tahiti', qty: '1/2 unidade (suco)' },
-      { name: 'Bicarbonato de Sódio (O SEGREDO)', qty: '1 colher café rasa' },
+      { name: 'Bicarbonato (APENAS 1X POR SEMANA - DIAS 1, 8, 15)', qty: '1 colher café rasa' },
       { name: 'Mel Puro', qty: '1 colher chá' }
     ],
     instructions: [
       'Aqueça a água até ficar morna (não ferva).',
       'Esprema o suco de meio limão na água.',
-      'Adicione o bicarbonato e espere a reação efervescente passar (isso alcaliniza o sangue).',
+      'Se for dia de bicarbonato, adicione-o e espere a reação passar.',
       'Finalize com o mel e misture bem.',
-      'Beba em jejum para máxima absorção vascular.'
+      'Beba em seguida, preferencialmente em jejum leve.'
     ],
-    tips: ['O bicarbonato ajuda na dilatação dos vasos ao equilibrar o pH.', 'Pode ser usado 3x por semana para resultados mais rápidos.', 'Não substitui orientação médica.']
-  },
-  'turbo-alcalino': {
-    id: 'turbo-alcalino',
-    name: 'Tônico Turbo Alcalino',
-    icon: 'Sparkles',
-    type: 'complementary',
-    category: 'all',
-    timing: 'Antes do Almoço',
-    serve: 'Potencializador de performance que usa o bicarbonato para reduzir a acidez e melhorar o fluxo sanguíneo.',
-    benefits: ['Alcalinização Sanguínea', 'Resistência Muscular', 'Melhora do Fluxo'],
-    ingredients: [
-      { name: 'Água Gelada', qty: '1 copo' },
-      { name: 'Bicarbonato de Sódio', qty: '1/2 colher café' },
-      { name: 'Vinagre de Maçã Orgânico', qty: '1 colher chá' }
-    ],
-    instructions: [
-      'Misture o bicarbonato na água.',
-      'Adicione o vinagre de maçã (ajuda na digestão e absorção).',
-      'Beba 15 minutos antes da principal refeição.',
-      'Use em dias alternados.'
-    ],
-    tips: ['Excelente para quem sente cansaço rápido.', 'Ajuda a manter o corpo em estado de prontidão.']
+    tips: ['Ingredientes naturais de uso tradicional.', 'Não exceda as quantidades.', 'Não substitui orientação médica.']
   },
   'anti-gozada': {
     id: 'anti-gozada',
@@ -70,11 +48,13 @@ export const TONICS: Record<string, Tonic> = {
     ingredients: [
       { name: 'Água', qty: '1 copo' },
       { name: 'Chá de Camomila ou Erva-Doce', qty: '1 xícara (morno)' },
-      { name: 'Mel Puro', qty: '1 colher chá' }
+      { name: 'Mel Puro', qty: '1 colher chá' },
+      { name: 'Otimizador de pH (Bicarbonato)', qty: '1 colher café rasa (Opcional - 1x por semana)' }
     ],
     instructions: [
       'Prepare o chá de camomila ou erva-doce normalmente.',
       'Deixe amornar até uma temperatura agradável.',
+      'Se for usar o Otimizador de pH, adicione-o agora e misture.',
       'Adicione a colher de mel.',
       'Beba relaxando a respiração.',
       'Pode ser tomado todos os dias à noite.'
@@ -94,11 +74,13 @@ export const TONICS: Record<string, Tonic> = {
       { name: 'Água', qty: '1 copo' },
       { name: 'Gengibre Ralado', qty: '1 colher chá' },
       { name: 'Canela em pó', qty: '1 pitada' },
-      { name: 'Mel Puro', qty: '1 colher chá' }
+      { name: 'Mel Puro', qty: '1 colher chá' },
+      { name: 'Otimizador de pH (Bicarbonato)', qty: '1 colher café rasa (Opcional - 1x por semana)' }
     ],
     instructions: [
       'Misture o gengibre ralado na água.',
       'Adicione a pitada de canela.',
+      'Se for usar o Otimizador de pH, adicione-o agora e misture.',
       'Finalize com o mel para equilibrar o sabor.',
       'Beba no meio da tarde.',
       'NÃO usar à noite para não afetar o sono.'
@@ -118,11 +100,13 @@ export const TONICS: Record<string, Tonic> = {
       { name: 'Água', qty: '1 copo' },
       { name: 'Limão Tahiti', qty: '1/2 unidade (suco)' },
       { name: 'Mel Puro', qty: '1 colher chá' },
-      { name: 'Aveia Fina', qty: '1 colher sopa' }
+      { name: 'Aveia Fina', qty: '1 colher sopa' },
+      { name: 'Otimizador de pH (Bicarbonato)', qty: '1 colher café rasa (Opcional - 1x por semana)' }
     ],
     instructions: [
       'Coloque a aveia na água e misture bem.',
       'Adicione o suco de limão.',
+      'Se for usar o Otimizador de pH, adicione-o agora e misture.',
       'Finalize com o mel.',
       'Beba pela manhã ou uma hora antes da atividade física ou sexual.'
     ],

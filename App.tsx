@@ -22,7 +22,7 @@ import { PdfView } from './views/PdfView.tsx';
 import { WelcomeModal } from './components/WelcomeModal.tsx';
 import { Logo } from './components/Logo.tsx';
 import { Sidebar } from './components/Sidebar.tsx';
-import { Home, Beaker, Crown, Zap, Gift, Menu, ListChecks } from 'lucide-react';
+import { Home, Beaker, Crown, Zap, Gift, Menu, ListChecks, User, ShieldCheck, BookOpen, LogOut, ChevronRight } from 'lucide-react';
 
 const STORAGE_KEY = 'protocolo_forca_natural_v2';
 
@@ -83,6 +83,7 @@ const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>(View.LOGIN);
   const [activeTonicId, setActiveTonicId] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   // Efeito de persistência imediata
   useEffect(() => {
@@ -176,11 +177,23 @@ const App: React.FC = () => {
   }, [state.isLoggedIn, state.user?.onboardingCompleted]);
 
   const handleLogin = (name: string, email: string) => {
-    const newUser = { 
+    // Tenta recuperar dados existentes para este email
+    const saved = localStorage.getItem(STORAGE_KEY);
+    let existingUser = null;
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed.user && parsed.user.email === email) {
+          existingUser = parsed.user;
+        }
+      } catch (e) {}
+    }
+
+    const newUser = existingUser || { 
       ...MOCK_USER, 
       name, 
       email,
-      id: `user_${Date.now()}`, // ID único por sessão de login
+      id: `user_${Date.now()}`,
       createdAt: new Date().toISOString(),
       onboardingCompleted: false
     };
@@ -193,7 +206,12 @@ const App: React.FC = () => {
     }).catch(() => {});
 
     setState(prev => ({ ...prev, isLoggedIn: true, user: newUser }));
-    window.location.hash = 'onboarding';
+    
+    if (newUser.onboardingCompleted) {
+      window.location.hash = 'dashboard';
+    } else {
+      window.location.hash = 'onboarding';
+    }
   };
 
   const handleOnboardingComplete = (profile: UserProfile) => {
@@ -300,8 +318,35 @@ const App: React.FC = () => {
             <span className="font-poppins font-black text-lg hidden sm:block tracking-tighter text-black uppercase">PROTOCOL <span className="text-[#E63946]">ELITE</span></span>
           </div>
         </div>
-        <div onClick={() => navigateTo(View.PROFILE)} className="w-9 h-9 bg-black text-white rounded-xl flex items-center justify-center font-black text-sm uppercase shadow-lg cursor-pointer">
-          {state.user?.name?.charAt(0) || 'U'}
+        <div className="relative">
+          <div 
+            onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)} 
+            className="w-9 h-9 bg-black text-white rounded-xl flex items-center justify-center font-black text-sm uppercase shadow-lg cursor-pointer hover:scale-105 transition-transform"
+          >
+            {state.user?.name?.charAt(0) || 'U'}
+          </div>
+
+          {isProfileMenuOpen && (
+            <>
+              <div className="fixed inset-0 z-[60]" onClick={() => setIsProfileMenuOpen(false)}></div>
+              <div className="absolute right-0 mt-3 w-64 bg-white rounded-3xl shadow-2xl border border-gray-100 py-4 z-[70] animate-in fade-in zoom-in duration-200">
+                <div className="px-6 py-3 border-b border-gray-50 mb-2">
+                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Logado como</p>
+                  <p className="font-black text-black truncate">{state.user?.name}</p>
+                </div>
+                
+                <ProfileMenuItem icon={<BookOpen size={18} />} label="Ciência" onClick={() => { navigateTo(View.SCIENCE); setIsProfileMenuOpen(false); }} />
+                <ProfileMenuItem icon={<ShieldCheck size={18} />} label="Garantia" onClick={() => { navigateTo(View.WARRANTY); setIsProfileMenuOpen(false); }} />
+                <ProfileMenuItem icon={<ListChecks size={18} />} label="Checklist" onClick={() => { navigateTo(View.CHECKLIST); setIsProfileMenuOpen(false); }} />
+                <ProfileMenuItem icon={<Crown size={18} />} label="Premium" onClick={() => { navigateTo(View.PREMIUM); setIsProfileMenuOpen(false); }} />
+                <ProfileMenuItem icon={<User size={18} />} label="Meu Perfil" onClick={() => { navigateTo(View.PROFILE); setIsProfileMenuOpen(false); }} />
+                
+                <div className="mt-2 pt-2 border-t border-gray-50">
+                  <ProfileMenuItem icon={<LogOut size={18} />} label="Sair" onClick={handleLogout} color="text-red-500" />
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </header>
 
@@ -323,6 +368,16 @@ const NavButton: React.FC<{ active: boolean; icon: React.ReactNode; label: strin
   <button onClick={onClick} className={`flex flex-col items-center gap-1.5 transition-all ${active ? 'text-[#E63946] scale-110' : 'text-gray-500'}`}>
     {icon}
     <span className="text-[9px] font-black uppercase tracking-[0.2em]">{label}</span>
+  </button>
+);
+
+const ProfileMenuItem: React.FC<{ icon: React.ReactNode; label: string; onClick: () => void; color?: string }> = ({ icon, label, onClick, color = "text-black" }) => (
+  <button onClick={onClick} className="w-full px-6 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors group">
+    <div className="flex items-center gap-4">
+      <div className={`${color} group-hover:scale-110 transition-transform`}>{icon}</div>
+      <span className={`text-xs font-black uppercase tracking-widest ${color}`}>{label}</span>
+    </div>
+    <ChevronRight size={14} className="text-gray-300 group-hover:text-black transition-colors" />
   </button>
 );
 
