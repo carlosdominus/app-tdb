@@ -48,13 +48,12 @@ export const TONICS: Record<string, Tonic> = {
     ingredients: [
       { name: 'Água', qty: '1 copo' },
       { name: 'Chá de Camomila ou Erva-Doce', qty: '1 xícara (morno)' },
-      { name: 'Mel Puro', qty: '1 colher chá' },
-      { name: 'Otimizador de pH (Bicarbonato)', qty: '1 colher café rasa (Opcional - 1x por semana)' }
+      { name: 'Bicarbonato (Opcional - 1x na semana)', qty: '1 pitada' },
+      { name: 'Mel Puro', qty: '1 colher chá' }
     ],
     instructions: [
       'Prepare o chá de camomila ou erva-doce normalmente.',
       'Deixe amornar até uma temperatura agradável.',
-      'Se for usar o Otimizador de pH, adicione-o agora e misture.',
       'Adicione a colher de mel.',
       'Beba relaxando a respiração.',
       'Pode ser tomado todos os dias à noite.'
@@ -74,13 +73,12 @@ export const TONICS: Record<string, Tonic> = {
       { name: 'Água', qty: '1 copo' },
       { name: 'Gengibre Ralado', qty: '1 colher chá' },
       { name: 'Canela em pó', qty: '1 pitada' },
-      { name: 'Mel Puro', qty: '1 colher chá' },
-      { name: 'Otimizador de pH (Bicarbonato)', qty: '1 colher café rasa (Opcional - 1x por semana)' }
+      { name: 'Bicarbonato (Opcional - 1x na semana)', qty: '1 pitada' },
+      { name: 'Mel Puro', qty: '1 colher chá' }
     ],
     instructions: [
       'Misture o gengibre ralado na água.',
       'Adicione a pitada de canela.',
-      'Se for usar o Otimizador de pH, adicione-o agora e misture.',
       'Finalize com o mel para equilibrar o sabor.',
       'Beba no meio da tarde.',
       'NÃO usar à noite para não afetar o sono.'
@@ -99,14 +97,13 @@ export const TONICS: Record<string, Tonic> = {
     ingredients: [
       { name: 'Água', qty: '1 copo' },
       { name: 'Limão Tahiti', qty: '1/2 unidade (suco)' },
+      { name: 'Bicarbonato (Opcional - 1x na semana)', qty: '1 pitada' },
       { name: 'Mel Puro', qty: '1 colher chá' },
-      { name: 'Aveia Fina', qty: '1 colher sopa' },
-      { name: 'Otimizador de pH (Bicarbonato)', qty: '1 colher café rasa (Opcional - 1x por semana)' }
+      { name: 'Aveia Fina', qty: '1 colher sopa' }
     ],
     instructions: [
       'Coloque a aveia na água e misture bem.',
       'Adicione o suco de limão.',
-      'Se for usar o Otimizador de pH, adicione-o agora e misture.',
       'Finalize com o mel.',
       'Beba pela manhã ou uma hora antes da atividade física ou sexual.'
     ],

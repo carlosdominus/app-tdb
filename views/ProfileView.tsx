@@ -2,7 +2,7 @@
 import React from 'react';
 import { AppState, View } from '../types';
 import { GlassCard } from '../components/GlassCard';
-import { User, Shield, LogOut, HelpCircle, ChevronRight, Crown, Activity, ListChecks, Beaker } from 'lucide-react';
+import { User, Shield, LogOut, HelpCircle, ChevronRight, Crown, Activity, ListChecks, BookOpen } from 'lucide-react';
 
 interface ProfileViewProps {
   state: AppState;
@@ -47,7 +47,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({ state, onBack, onLogou
         <GlassCard className="p-0 overflow-hidden divide-y divide-gray-100 bg-white border-none shadow-sm">
           <MenuLink icon={<Crown size={18} />} label="Diagnóstico Premium" onClick={() => onNavigate(View.PREMIUM)} />
           <MenuLink icon={<ListChecks size={18} />} label="Checklist Diário" onClick={() => onNavigate(View.CHECKLIST)} />
-          <MenuLink icon={<Beaker size={18} />} label="Ciência do Protocolo" onClick={() => onNavigate(View.SCIENCE)} />
+          <MenuLink icon={<BookOpen size={18} />} label="Ciência por Trás" onClick={() => onNavigate(View.SCIENCE)} />
           <MenuLink icon={<Shield size={18} />} label="Garantia 90 Dias" onClick={() => onNavigate(View.WARRANTY)} />
           <MenuLink icon={<HelpCircle size={18} />} label="Suporte e Ajuda" onClick={() => onNavigate(View.HELP)} />
           <button 
